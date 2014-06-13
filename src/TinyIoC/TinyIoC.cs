@@ -1058,12 +1058,12 @@ namespace TinyIoC
         /// although no error will be thrown.
         /// </summary>
         public void AutoRegister()
-        {
-//#if APPDOMAIN_GETASSEMBLIES
-//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, null);
-//#else
+		{
+#if APPDOMAIN_GETASSEMBLIES && !PORTABLE
+			AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, null);
+#else
 		AutoRegisterInternal(new Assembly[] {this.GetType().Assembly()}, DuplicateImplementationActions.RegisterSingle, null);
-//#endif
+#endif
         }
 
         /// <summary>
@@ -1075,12 +1075,12 @@ namespace TinyIoC
         /// </summary>
         /// <param name="registrationPredicate">Predicate to determine if a particular type should be registered</param>
         public void AutoRegister(Func<Type, bool> registrationPredicate)
-        {
-//#if APPDOMAIN_GETASSEMBLIES
-//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, registrationPredicate);
-//#else
-		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly()}, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
-//#endif
+		{
+#if APPDOMAIN_GETASSEMBLIES && !PORTABLE
+            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+#else
+			AutoRegisterInternal(new Assembly[] { this.GetType().Assembly()}, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+#endif
         }
 
         /// <summary>
@@ -1089,12 +1089,12 @@ namespace TinyIoC
         /// <param name="duplicateAction">What action to take when encountering duplicate implementations of an interface/base class.</param>
         /// <exception cref="TinyIoCAutoRegistrationException"/>
         public void AutoRegister(DuplicateImplementationActions duplicateAction)
-        {
-//#if APPDOMAIN_GETASSEMBLIES
-//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, null);
-//#else
-		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, null);
-//#endif
+		{
+#if APPDOMAIN_GETASSEMBLIES && !PORTABLE
+            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, null);
+#else
+			AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, null);
+#endif
         }
 
         /// <summary>
@@ -1105,12 +1105,12 @@ namespace TinyIoC
         /// <param name="registrationPredicate">Predicate to determine if a particular type should be registered</param>
         /// <exception cref="TinyIoCAutoRegistrationException"/>
         public void AutoRegister(DuplicateImplementationActions duplicateAction, Func<Type, bool> registrationPredicate)
-        {
-//#if APPDOMAIN_GETASSEMBLIES
-//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, registrationPredicate);
-//#else
-		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
-//#endif
+		{
+#if APPDOMAIN_GETASSEMBLIES && !PORTABLE
+            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, registrationPredicate);
+#else
+			AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+#endif
         }
 
 		/// <summary>

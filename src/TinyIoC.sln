@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3549B35C-E6A0-4007-8BBD-C82396AA28A1}"
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
@@ -13,13 +15,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyIoC", "TinyIoC\TinyIoC.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyIoC.Tests.ExternalTypes", "TinyIoC.Tests.ExternalTypes\TinyIoC.Tests.ExternalTypes.csproj", "{F6422C73-C40A-489A-A822-387E3098B2F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PCL", "PCL", "{F3397D41-B817-49EE-80E4-272B9F372FCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyIoC.Core", "PCL\TinyIoC.Core\TinyIoC.Core.csproj", "{987CA3B8-39D7-426A-8223-01A8073A8188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyIoC.PCL", "PCL\TinyIoC.PCL\TinyIoC.PCL.csproj", "{A2A3787E-DA83-44D6-8696-F39CF063C91D}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
 		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = TinyIoC.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,8 +43,23 @@ Global
 		{F6422C73-C40A-489A-A822-387E3098B2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6422C73-C40A-489A-A822-387E3098B2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6422C73-C40A-489A-A822-387E3098B2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{987CA3B8-39D7-426A-8223-01A8073A8188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{987CA3B8-39D7-426A-8223-01A8073A8188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{987CA3B8-39D7-426A-8223-01A8073A8188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{987CA3B8-39D7-426A-8223-01A8073A8188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A3787E-DA83-44D6-8696-F39CF063C91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A3787E-DA83-44D6-8696-F39CF063C91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A3787E-DA83-44D6-8696-F39CF063C91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A3787E-DA83-44D6-8696-F39CF063C91D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{987CA3B8-39D7-426A-8223-01A8073A8188} = {F3397D41-B817-49EE-80E4-272B9F372FCA}
+		{A2A3787E-DA83-44D6-8696-F39CF063C91D} = {F3397D41-B817-49EE-80E4-272B9F372FCA}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = TinyIoC.vsmdi
 	EndGlobalSection
 EndGlobal
