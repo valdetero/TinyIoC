@@ -786,12 +786,14 @@ namespace TinyIoC
     public sealed partial class TinyIoCContainer : IDisposable
     {
         #region Fake NETFX_CORE Classes
-#if NETFX_CORE
-        private sealed class MethodAccessException : Exception
-        {
-        }
 
-        private sealed class AppDomain
+	private sealed class MethodAccessException : Exception
+	{
+	}
+
+	#if NETFX_CORE
+        
+	    private sealed class AppDomain
         {
             public static AppDomain CurrentDomain { get; private set; }
 
@@ -1057,11 +1059,11 @@ namespace TinyIoC
         /// </summary>
         public void AutoRegister()
         {
-#if APPDOMAIN_GETASSEMBLIES
-            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, null);
-#else
-            AutoRegisterInternal(new Assembly[] {this.GetType().Assembly()}, true, null);
-#endif
+//#if APPDOMAIN_GETASSEMBLIES
+//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, null);
+//#else
+		AutoRegisterInternal(new Assembly[] {this.GetType().Assembly()}, DuplicateImplementationActions.RegisterSingle, null);
+//#endif
         }
 
         /// <summary>
@@ -1074,11 +1076,11 @@ namespace TinyIoC
         /// <param name="registrationPredicate">Predicate to determine if a particular type should be registered</param>
         public void AutoRegister(Func<Type, bool> registrationPredicate)
         {
-#if APPDOMAIN_GETASSEMBLIES
-            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, registrationPredicate);
-#else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly()}, true, registrationPredicate);
-#endif
+//#if APPDOMAIN_GETASSEMBLIES
+//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+//#else
+		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly()}, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+//#endif
         }
 
         /// <summary>
@@ -1088,11 +1090,11 @@ namespace TinyIoC
         /// <exception cref="TinyIoCAutoRegistrationException"/>
         public void AutoRegister(DuplicateImplementationActions duplicateAction)
         {
-#if APPDOMAIN_GETASSEMBLIES
-            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, null);
-#else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, ignoreDuplicateImplementations, null);
-#endif
+//#if APPDOMAIN_GETASSEMBLIES
+//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, null);
+//#else
+		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, null);
+//#endif
         }
 
         /// <summary>
@@ -1104,11 +1106,11 @@ namespace TinyIoC
         /// <exception cref="TinyIoCAutoRegistrationException"/>
         public void AutoRegister(DuplicateImplementationActions duplicateAction, Func<Type, bool> registrationPredicate)
         {
-#if APPDOMAIN_GETASSEMBLIES
-            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, registrationPredicate);
-#else
-            AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, ignoreDuplicateImplementations, registrationPredicate);
-#endif
+//#if APPDOMAIN_GETASSEMBLIES
+//            AutoRegisterInternal(AppDomain.CurrentDomain.GetAssemblies().Where(a => !IsIgnoredAssembly(a)), duplicateAction, registrationPredicate);
+//#else
+		AutoRegisterInternal(new Assembly[] { this.GetType().Assembly() }, DuplicateImplementationActions.RegisterSingle, registrationPredicate);
+//#endif
         }
 
 		/// <summary>
@@ -3827,8 +3829,8 @@ namespace TinyIoC
             {
                 if (registerType.IsInterface())
                 {
-                    if (!registerImplementation.FindInterfaces((t, o) => t.Name == registerType.Name, null).Any())
-                        return false;
+					if (registerImplementation.GetInterfaces ().All (t => t.Name != registerType.Name))
+						return false;
                 }
                 else if (registerType.IsAbstract() && registerImplementation.BaseType() != registerType)
                 {

@@ -745,7 +745,10 @@ namespace TinyMessenger
                                            where object.ReferenceEquals(sub.Subscription.SubscriptionToken, subscriptionToken)
                                            select sub).ToList();
 
-                currentlySubscribed.ForEach(sub => currentSubscriptions.Remove(sub));
+				foreach(var sub in currentlySubscribed)
+				{
+					currentSubscriptions.Remove (sub);
+				}
             }
         }
 
@@ -767,7 +770,7 @@ namespace TinyMessenger
                                        select sub).ToList();
             }
 
-            currentlySubscribed.ForEach(sub =>
+			foreach(var sub in currentlySubscribed)
             {
                 try
                 {
@@ -778,7 +781,7 @@ namespace TinyMessenger
                     // Ignore any errors and carry on
                     // TODO - add to a list of erroring subs and remove them?
                 }
-            });
+            }
         }
 
         private void PublishAsyncInternal<TMessage>(TMessage message, AsyncCallback callback) where TMessage : class, ITinyMessage
