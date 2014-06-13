@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TinyIoC-PCL</id>
+    <version>1.0</version>
+    <authors>Has AlTaiar</authors>
+    <owners>Andy Sherwood,Steven Robbins, Has AlTaiar</owners>
+    <licenseUrl>https://github.com/grumpydev/TinyIoC/blob/master/src/licence.txt</licenseUrl>
+    <projectUrl>https://github.com/has-taiar/TinyIoC</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A portable library of TinyIoC, which is an easy to use, hassle free, Inversion of Control Container for small projects, libraries and beginners alike</description>
+    <tags>IoC</tags>
+  </metadata>
+</package>

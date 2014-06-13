@@ -1,14 +1,17 @@
 $buildDir = ".\build"
 $coreDir = $buildDir + "\Core"
+$portableDir = $buildDir + "\PCL”
 $aspnetDir = $buildDir + "\AspNet"
 $messengerDir = $buildDir + "\Messenger"
 $winrtDir = $buildDir + "\WinRT"
 $coreOutputDir = $coreDir + "\Content"
+$portableOutputDir = $portaleDir + "\Content"
 $aspnetOutputDir = $aspnetDir + "\Content"
 $winrtOutputDir = $winrtDir + "\Content"
 $messengerOutputDir = $messengerDir + "\Content"
 if (test-path $buildDir) { ri -r -fo $buildDir }
 mkdir $coreOutputDir | out-null
+mkdir $portableOutputDir | out-null
 mkdir $aspnetOutputDir | out-null
 mkdir $winrtOutputDir | out-null
 mkdir $messengerOutputDir | out-null
