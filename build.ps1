@@ -1,11 +1,11 @@
 $buildDir = ".\build"
 $coreDir = $buildDir + "\Core"
-$portableDir = $buildDir + "\PCL”
+$portableDir = $buildDir + "\PCL"
 $aspnetDir = $buildDir + "\AspNet"
 $messengerDir = $buildDir + "\Messenger"
 $winrtDir = $buildDir + "\WinRT"
 $coreOutputDir = $coreDir + "\Content"
-$portableOutputDir = $portaleDir + "\Content"
+$portableOutputDir = $portableDir + "\Content"
 $aspnetOutputDir = $aspnetDir + "\Content"
 $winrtOutputDir = $winrtDir + "\Content"
 $messengerOutputDir = $messengerDir + "\Content"
